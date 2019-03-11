@@ -29,4 +29,11 @@
         <module>demo</module>
     </modules>
 
+    <scm>
+        <connection>scm:git:git@github.com:rocketbase-io/vaadin-croppie.git</connection>
+        <developerConnection>scm:git:git@github.com:rocketbase-io/vaadin-croppie.git</developerConnection>
+        <url>https://github.com/rocketbase-io/vaadin-croppie.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
 </project>
