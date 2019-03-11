@@ -1,0 +1,103 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<dom-module id="vaadin-croppie">
+    <link rel="import" type="css" href="../bower_components/Croppie/croppie.css">
+    <template>
+        <style>
+            .vaadin-croppie-container {
+                display: block;
+                height: inherit;
+                width: inherit;
+            }
+
+            [part="label"]:empty {
+                display: none;
+            }
+        </style>
+        <div class="vaadin-croppie-container">
+            <label part="label" id="[[_labelId]]">[[label]]</label>
+
+            <img id="image" src="[[src]]" style="display: none">
+        </div>
+    </template>
+    <script>
+      class VaadinCroppie extends Polymer.Element {
+        static get properties () {
+          return {
+            src: {
+              type: String,
+              reflectToAttribute: true,
+              observer: '_srcSet'
+            },
+            croppieOptions: {
+              type: String,
+              observer: '_croppieOptionsChanged'
+            },
+            label: {
+              type: String,
+              value: '',
+              observer: '_labelChanged'
+            }
+          }
+        }
+
+        static get is () {
+          return 'vaadin-croppie'
+        }
+
+        constructor () {
+          super()
+          this.initTimerId = void 0
+        }
+
+        _croppieOptionsChanged (newValue, oldValue) {
+          console.log('croppieConfig', newValue)
+          this.config = JSON.parse(newValue)
+
+          var timerId = void 0
+          var vaadinServer = this.$server
+          this.config['update'] = function (data) {
+            clearTimeout(timerId)
+            timerId = setTimeout(function () {
+              vaadinServer.cropChanged(JSON.stringify(data.points), data.zoom)
+            }, 300)
+          }
+
+          this._initCroppie()
+        }
+
+        _srcSet (newValue, oldValue) {
+          console.log('src changed')
+        }
+
+        _labelChanged (label) {
+          if (label !== '' && label != null) {
+            this.setAttribute('has-label', '')
+          } else {
+            this.removeAttribute('has-label')
+          }
+        }
+
+        _initCroppie () {
+          clearTimeout(this.initTimerId)
+          this.initTimerId = setTimeout(function () {
+
+            var ctx = this.shadowRoot.querySelector('#image')
+            if (this.croppie != undefined) {
+              this.croppie.destroy()
+            }
+            this.croppie = new Croppie(ctx, this.config)
+            ctx.style.removeProperty('display')
+          }.bind(this), 300)
+
+        }
+
+        connectedCallback () {
+          super.connectedCallback()
+          console.log('croppie - connectedCallback')
+        }
+
+      }
+
+      window.customElements.define(VaadinCroppie.is, VaadinCroppie)
+    </script>
+</dom-module>
