@@ -7,7 +7,7 @@
     <artifactId>vaadin-croppie</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>vaadin-croppie</name>
+    <name>croppie</name>
     <description>Integration of croppie for Vaadin platform</description>
 
     <properties>
