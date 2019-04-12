@@ -4,8 +4,8 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.PWA;
 import io.rocketbase.vaadin.croppie.CorsProxyResource;
 import io.rocketbase.vaadin.croppie.Croppie;
 import io.rocketbase.vaadin.croppie.model.*;
@@ -13,7 +13,7 @@ import io.rocketbase.vaadin.croppie.model.*;
 import java.io.IOException;
 
 @Route
-@PWA(name = "Project Base for Vaadin Flow with Spring", shortName = "Project Base")
+@PageTitle("Croppie-Demo")
 public class MainView extends VerticalLayout {
 
     public MainView() throws IOException {
