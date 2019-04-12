@@ -13,9 +13,7 @@ import io.rocketbase.vaadin.croppie.model.SizeConfig;
 import io.rocketbase.vaadin.croppie.model.ViewPortConfig;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Tag("vaadin-croppie")
 @HtmlImport("frontend://html/croppie.html")
 @JavaScript("bower_components/Croppie/croppie.js")
