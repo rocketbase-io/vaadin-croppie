@@ -25,8 +25,7 @@
           return {
             src: {
               type: String,
-              reflectToAttribute: true,
-              observer: '_srcSet'
+              reflectToAttribute: true
             },
             croppieOptions: {
               type: String,
@@ -50,7 +49,6 @@
         }
 
         _croppieOptionsChanged (newValue, oldValue) {
-          console.log('croppieConfig', newValue)
           this.config = JSON.parse(newValue)
 
           var timerId = void 0
@@ -63,10 +61,6 @@
           }
 
           this._initCroppie()
-        }
-
-        _srcSet (newValue, oldValue) {
-          console.log('src changed')
         }
 
         _labelChanged (label) {
@@ -89,11 +83,6 @@
             ctx.style.removeProperty('display')
           }.bind(this), 300)
 
-        }
-
-        connectedCallback () {
-          super.connectedCallback()
-          console.log('croppie - connectedCallback')
         }
 
       }
