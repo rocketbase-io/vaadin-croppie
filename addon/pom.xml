@@ -4,7 +4,7 @@
 
     <groupId>io.rocketbase.vaadin</groupId>
     <artifactId>vaadin-croppie</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
 
     <name>croppie</name>
     <description>Integration of croppie for Vaadin platform</description>
